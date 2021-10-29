@@ -1,0 +1,22 @@
+# Specify a base image
+FROM node:alpine
+
+# Set working directory to copy files/application into 
+WORKDIR /usr/app/frontend
+
+# Install depenendencies
+COPY ./package.json ./
+RUN npm install
+
+# Copy over everything else (all source files...etc)
+COPY ./ ./ 
+
+# Default start-up command 
+CMD ["npm","run","start"]
+
+
+# Windows cmd prompt, docker build  command:
+# $ docker build -t frontendapp -f Dockerfile.dev . 
+
+# Windows cmd prompt, docker run command:
+# $ docker run -p 3000:3000 -v /usr/app/frontend/node_modules -v /c/WorkSpace/Docker/frontend:/usr/app/frontend <image_id> 
